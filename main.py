@@ -1,3 +1,4 @@
+import json
 import os
 import time
 
@@ -88,10 +89,11 @@ def run() -> int:
         lo.find_service(popup_page, SERVICE)
 
         amount = lo.count_free_slots(popup_page)
-        print(f"Free slots for {SERVICE}: {amount}")
+        logger.info(f"Free slots for {SERVICE}: {amount}")
 
         context.close()
         browser.close()
-    return amount
+    return {"value": amount}
 if __name__ == "__main__":
-    run()
+    result = run()
+    print(json.dump(result))
