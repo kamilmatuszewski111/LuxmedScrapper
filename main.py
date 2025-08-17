@@ -96,4 +96,4 @@ def run() -> int:
     return {"value": amount}
 if __name__ == "__main__":
     result = run()
-    print(json.dump(result))
+    print(json.dumps(result))
