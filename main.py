@@ -63,11 +63,11 @@ class LuxMedScrapper:
 
     @staticmethod
     def count_free_slots(page: Page) -> int:
-
+        time.sleep(5)
         values = page.locator("div.card-body.p-0.ng-star-inserted span").all_inner_texts()
         return sum(int(v) for v in values if v.isdigit())
 
-def run() -> None:
+def run() -> int:
     with sync_playwright() as p:
         # Init browser
         # p = sync_playwright().start()
@@ -92,7 +92,6 @@ def run() -> None:
 
         context.close()
         browser.close()
-
+    return amount
 if __name__ == "__main__":
     run()
-
