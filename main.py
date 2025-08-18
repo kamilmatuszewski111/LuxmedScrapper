@@ -68,7 +68,7 @@ class LuxMedScrapper:
         values = page.locator("div.card-body.p-0.ng-star-inserted span").all_inner_texts()
         return sum(int(v) for v in values if v.isdigit())
 
-def run() -> int:
+def run() -> dict:
     with sync_playwright() as p:
         # Init browser
         # p = sync_playwright().start()
@@ -93,7 +93,7 @@ def run() -> int:
 
         context.close()
         browser.close()
-    return {"value": amount}
+    return {"value": amount, "service_name": SERVICE}
 if __name__ == "__main__":
     result = run()
     print(json.dumps(result))
